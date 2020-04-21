@@ -1,31 +1,29 @@
-import {CHANGE_INPUT_VALUE, ADD_TODO_ITEM,DELETE_TODO_ITEM} from './actionsTypes'
 
 const defaultState={
-    inputValue:'123',
-    list:['wade','kobe','lbj']
+     inputValue:'',
+     list:[]
 }
-export default (state=defaultState,action)=>{
 
-    if(action.type===CHANGE_INPUT_VALUE) {
+export default (state=defaultState , action)=>{
+
+    if(action.type==='change_input_value'){
         const newState=JSON.parse(JSON.stringify(state))
         newState.inputValue=action.value
-         return newState
+        return newState
     }
 
-    if(action.type===ADD_TODO_ITEM){
+    if(action.type==='add_item'){
         const newState=JSON.parse(JSON.stringify(state))
         newState.list.push(newState.inputValue)
         newState.inputValue=''
         return newState
     }
 
-
-    if(action.type===DELETE_TODO_ITEM){
+    if(action.type==='delete_item'){
         const newState=JSON.parse(JSON.stringify(state))
         newState.list.splice(action.value,1)
         return newState
     }
-
 
     return state
 }
